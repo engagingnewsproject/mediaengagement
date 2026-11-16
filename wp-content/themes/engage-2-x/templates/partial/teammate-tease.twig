@@ -3,7 +3,7 @@
 {% endif %}
 
 {% if mate %}
-	<div class="mate-tease{% if mate.getDisplayLink %} mate-tease_link{% endif %} grid grid--col-12{{status}} {{ mate.member_image or mate.thumbnail ? 'mate--has-img '}}">
+	<div class="mate-tease{% if mate.getDisplayLink %} mate-tease_link{% endif %}{{status}} {{ mate.member_image or mate.thumbnail ? 'mate--has-img '}}">
 
 		{% set mate_content %}
 		<div
