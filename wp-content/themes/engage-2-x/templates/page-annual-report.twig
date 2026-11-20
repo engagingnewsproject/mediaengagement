@@ -58,7 +58,7 @@
 					{% if main.director_content %}
 						<div class="grid">
 							<div class="ann__content_size_sm">
-								{{ main.director_content }}
+								{{ main.director_content|raw }}
 							</div>
 						</div>
 					{% endif %}
@@ -76,7 +76,7 @@
 						<h2 class="ann__header_bolded ann__header_orange">{{ main.research_bolded_title}}</h2>
 					{% endif %}
 					{% if main.research_subtext %}
-						<div class="ann__sct_research_subtext"><h3>{{ main.research_subtext}}</h3></div>
+						<div class="ann__sct_research_subtext"><h3>{{ main.research_subtext|raw }}</h3></div>
 					{% endif %}
 					{# TODO: create class for #}
 					<div class="ann__sct_research_grid grid">
@@ -161,7 +161,7 @@
 										<h3 class="ann__grid_title {% if main.title_underline_dots %}bottom-dots{% endif %} {% if item.highlight_number == null %}number-null{% endif %}" {% if main.title_color %}style="color:{{ main.title_color }}"{% endif %}>{{ item.highlight_title }}</h3>
 									{% endif %}
 									{% if item.highlight_text %}
-										<p class="ann__grid_text" {% if main.text_color %}style="color:{{ main.text_color }}"{% endif %}>{{ item.highlight_text }}</p>
+										<p class="ann__grid_text" {% if main.text_color %}style="color:{{ main.text_color }}"{% endif %}>{{ item.highlight_text|raw }}</p>
 									{% endif %}
 								</div>
 							{% endfor %}
@@ -220,7 +220,7 @@
 										<h3 class="tile__title h3">{{ tile.title|length > 50 ? tile.title|slice(0, 50) ~ "..." : tile.title}}</h3>
 									{% endif %}
 									{% if tile.content %}
-										<div class="tile__excerpt">{{ tile.content }}</div>
+										<div class="tile__excerpt">{{ tile.content|raw }}</div>
 									{% endif %}
 								</div>
 							</div>
@@ -291,7 +291,7 @@
 				<section class="ann__sct ann__sct_quote">
 				<div class="ann__sect_quote__container" style="{% if main.quote_image %}background-image:url({{ get_image(main.quote_image).src }});background-position:center;background-repeat:no-repeat;{% endif %}{% if main.quote_section_background %}background-color:{{ main.quote_section_background }};{% endif %}">
 					{% if main.quote_text %}
-						<h1 class="ann__sect_quote-img container--xl"{% if main.quote_background %} style="background-color:{{ main.quote_background }};"{% endif %}>{{ main.quote_text }}</h1>
+						<h1 class="ann__sect_quote-img container--xl"{% if main.quote_background %} style="background-color:{{ main.quote_background }};"{% endif %}>{{ main.quote_text|raw }}</h1>
 					{% endif %}
 					</div>
 				</section>
@@ -312,37 +312,37 @@
 						</div>
 					{% endif %}
 					{% if main.outreach_subtext %}
-						<div class="ann__subheader">{{ main.outreach_subtext }}</div>
+						<div class="ann__subheader">{{ main.outreach_subtext|raw }}</div>
 					{% endif %}
 					{% if main.row_one_intro %}
-						<div class="ann__intro">{{ main.row_one_intro }}</div>
+						<div class="ann__intro">{{ main.row_one_intro|raw }}</div>
 					{% endif %}
 					{% if main.row_one_column_one %}
 						<div class="ann__col ann__col_first">
-							{{ main.row_one_column_one }}
+							{{ main.row_one_column_one|raw }}
 						</div>
 					{% endif %}
 					{% if main.row_one_column_two %}
 						<div class="ann__col ann__col_second">
-							{{ main.row_one_column_two }}
+							{{ main.row_one_column_two|raw }}
 						</div>
 					{% endif %}
 					{# row two #}
 					{% if main.row_two_intro %}
-						<div class="ann__intro">{{ main.row_two_intro }}</div>
+						<div class="ann__intro">{{ main.row_two_intro|raw }}</div>
 					{% endif %}
 					{% if main.row_two_column_one %}
 						<div class="ann__col ann__col_first">
-							{{ main.row_two_column_one }}
+							{{ main.row_two_column_one|raw }}
 						</div>
 					{% endif %}
 					{% if main.row_two_column_two %}
 						<div class="ann__col ann__col_second">
-							{{ main.row_two_column_two }}
+							{{ main.row_two_column_two|raw }}
 						</div>
 					{% endif %}
 					{% if main.row_two_footer  %}
-						<div class="ann__intro">{{ main.row_two_footer }}</div>
+						<div class="ann__intro">{{ main.row_two_footer|raw }}</div>
 					{% endif %}
 				</section>
 
@@ -360,7 +360,7 @@
 				<footer class="ann__sct ann__sct_footer wrapper--pad-huge" {% if main.background_color %}style="background-color:{{main.background_color}};"{% endif %} id="footer">
 					{% if main.contact_info %}
 						<div class="ann__contact_info">
-							{{ main.contact_info }}
+							{{ main.contact_info|raw }}
 						</div>
 					{% endif %}
 					<div class="ann__social {% if main.social_icon_layout %} ann__social-{{ main.social_icon_layout }}{% endif %}">
@@ -371,7 +371,7 @@
 								{% set svg = [path, name, ending]|join %}
 								<div class="social item-animate">
 									<a href="{{ social.social_url }}" target="_blank">
-										{{ source(svg) }}
+										{{ source(svg)|raw }}
 										{% if main.social_show_handle %}
 											{{ social.social_handle }}
 										{% endif %}
@@ -424,7 +424,7 @@
 													{% if main.parallax_bar %}
 															<hr class="ann__sct_parallax-bar item-parallax-bar-scale" style="background-color:{{ main.parallax_bar }}">
 													{% endif %}
-													<div class="ann__wysiwyg-wrap container--xl item-animate">{{ main.parallax_text }}</div>
+													<div class="ann__wysiwyg-wrap container--xl item-animate">{{ main.parallax_text|raw }}</div>
 													{% if main.parallax_bar %}
 														<hr class="ann__sct_parallax-bar item-parallax-bar-scale" style="background-color:{{ main.parallax_bar }}"></hr>
 													{% endif %}
@@ -645,47 +645,47 @@
 											<div {% if main.grid_columns > 1 %}class="columns"{% endif %}>
 												{% if main.column_1 %}
 													<div class="column {% if main.grid_columns > 1 %}column-{{ main.grid_columns }}{% endif %} item-animate">
-														{{main.column_1}}
+														{{ main.column_1|raw }}
 													</div>
 												{% endif %}
 												{% if main.grid_columns > 1 and main.column_2 %}
 													<div class="column {% if main.grid_columns > 1 %}column-{{ main.grid_columns }}{% endif %} item-animate">
-														{{main.column_2}}
+														{{ main.column_2|raw }}
 													</div>
 												{% endif %}
 												{% if main.grid_columns > 2 and main.column_3 %}
 													<div class="column {% if main.grid_columns > 2 %}column-{{ main.grid_columns }}{% endif %} item-animate">
-														{{main.column_3}}
+														{{ main.column_3|raw }}
 													</div>
 												{% endif %}
 											</div>
 											{% if main.add_quote %}
 												<div class="column-quote h1 item-animate">
-													{{main.quote}}
+													{{ main.quote|raw }}
 												</div>
 											{% endif %}
 											
 											<div class="columns">
 												{% if main.column_4 %}
 													<div class="column {% if main.grid_columns > 1 %}column-{{ main.grid_columns }}{% endif %} item-animate">
-														{{main.column_4}}
+														{{ main.column_4|raw }}
 													</div>
 												{% endif %}
 												{% if main.grid_columns > 1 and main.column_5 %}
 													<div class="column {% if main.grid_columns > 1 %}column-{{ main.grid_columns }}{% endif %} item-animate">
-														{{main.column_5}}
+														{{ main.column_5|raw }}
 													</div>
 												{% endif %}
 												{% if main.grid_columns > 2 and main.column_6 %}
 													<div class="column {% if main.grid_columns > 2 %}column-{{ main.grid_columns }}{% endif %} item-animate">
-														{{main.column_6}}
+														{{ main.column_6|raw }}
 													</div>
 												{% endif %}
 											</div>
 											
 											{% if main.add_more_content %}
 												<div class="column item-animate">
-													{{main.more_content}}
+													{{ main.more_content|raw }}
 												</div>
 											{% endif %}
 										</div>
@@ -779,7 +779,7 @@
 											<div class="ann__research-initiatives_container-bottom">
 											{% if main.body_content %}
 												<div class="ann__research-initiatives_container-bottom_text item-animate">
-													{{ main.body_content}}
+													{{ main.body_content|raw }}
 												</div>
 											{% endif %}
 											</div>
@@ -830,7 +830,7 @@
 							{% endif %}
 							{% if item.outcome_content %}
 								<div class="ann__outcomes_item-right">
-									{{ item.outcome_content }}
+									{{ item.outcome_content|raw }}
 								</div>
 							{% endif %}
 						</div>
@@ -866,7 +866,7 @@
 
 	</section>
 	{% block footer %}
-		{{ function('wp_footer') }}
+		{{ function('wp_footer')|raw }}
 	{% endblock %}
 
 {% endblock content %}

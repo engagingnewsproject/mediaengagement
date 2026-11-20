@@ -34,7 +34,7 @@
 			{% if tile.hover_text %}
 				<div class="ann__hover_more">
 					{% if tile.hover_text %}
-						{{ tile.hover_text }}
+						{{ tile.hover_text|raw }}
 					{% endif %}
 					<div class="ann__hover_links">
 						{% for link in tile.links %}
