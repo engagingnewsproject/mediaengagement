@@ -11,7 +11,7 @@
 		</header>
 		<div class="article__content">
 			{% if post.content %}
-				{{ post.content }}
+				{{ post.content|raw }}
 			{% endif %}
 
 			{% if has_report %}

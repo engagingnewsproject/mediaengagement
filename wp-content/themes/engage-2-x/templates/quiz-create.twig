@@ -1,11 +1,11 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	{{ quizSVGs }}
+	{{ quizSVGs|raw }}
 	<section id="enp-quiz" class="enp-quiz__main">
-		{{ post.content }}
+		{{ post.content|raw }}
 	</section>
 	{% if options.footer_settings.quiz_footer %}
-		{{options.footer_settings.quiz_footer}}
+		{{ options.footer_settings.quiz_footer|raw }}
 	{% endif %}
 {% endblock %}

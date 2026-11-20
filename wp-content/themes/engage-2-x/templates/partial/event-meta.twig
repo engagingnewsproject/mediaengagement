@@ -2,7 +2,7 @@
 
 <div class="article-meta__item article-meta__item--event event__date event__date--{{ post.getStartDate == post.getEndDate ? 'single-day' : 'multi-day' }}">
 	<h2 class="article-meta__title event-meta__title">When</h2>
-	{{ post.getFormattedDate }}
+	{{ post.getFormattedDate|raw }}
 
 	{# TODO: ADD TO CALENDAR BUTTONS#}	
 </div>
@@ -11,7 +11,7 @@
 <div class="article-meta__item article-meta__item--event event__venue">
 	<h2 class="article-meta__title event-meta__title">Where</h2>
 	<h3 class="venue__name">{{ venue.name }}</h3> 
-	<p class="venue__address">{{ venue.address }}</p>
+	<p class="venue__address">{{ venue.address|raw }}</p>
 
 	{# TODO: LINK TO MAP #}	
 </div>

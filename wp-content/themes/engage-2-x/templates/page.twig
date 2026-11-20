@@ -11,12 +11,12 @@
 			<h1 class="article__title">{{post.title}}</h1>
 		</header>
 		<div class="article__content">
-			{{post.content}}
+			{{ post.content|raw }}
 		</div>
 		{% if post.meta('show_newsletter') %} {# ACF / Page settings #}
 			<div class="newsletter__wrapper">
 				<div class="newsletter-page widget">
-						{{ newsletter }}
+						{{ newsletter|raw }}
 				</div>
 			</div>
 		{% endif %}

@@ -28,11 +28,11 @@ ACF group name: Homepage Detail
 				<div class="home-section__tools--wrapper">
 					<div
 						class="home-section__quiz--info title title-quiz">
-						<h2>{{ quizInfo.title }}</h2>
+						<h2>{{ quizInfo.title|raw }}</h2>
 					</div>
 					<div
 						class="home-section__quiz--info description description-quiz">
-						<p>{{ quizInfo.description }}</p>
+						<p>{{ quizInfo.description|raw }}</p>
 						<div class="see-all-posts see-all-posts--quiz text-left">
 							<a class="btn btn--ghost btn--see-all" href="{{ quizInfo.button_link }}" aria-label="{{ quizInfo.button_title }} about {{ quizInfo.title }}">{{ quizInfo.button_title }}</a>
 						</div>
@@ -83,10 +83,10 @@ ACF group name: Homepage Detail
 							{% endif %}
 						</div>
 						<div class="home-section__button--info title title-button">
-							<h3>{{ infoBlock.title }}</h3>
+							<h3>{{ infoBlock.title|raw }}</h3>
 						</div>
 						<div class="home-section__button--info description description-button">
-							<p>{{ infoBlock.description }}</p>
+							<p>{{ infoBlock.description|raw }}</p>
 							<div class="see-all-posts see-all-posts--buttons text-left">
 								<a class="btn btn--ghost btn--see-all" href="{{ infoBlock.button_link }}" aria-label="{{ infoBlock.button_title }} about {{ infoBlock.title }}">{{ infoBlock.button_title }}</a>
 							</div>
@@ -99,7 +99,7 @@ ACF group name: Homepage Detail
 
 	{# <section class="newsletter__wrapper dots-right">
 		<div class="newsletter-page widget">
-			{{ newsletter }}
+			{{ newsletter|raw }}
 		</div>
 	</section> #}
 {% endblock %}

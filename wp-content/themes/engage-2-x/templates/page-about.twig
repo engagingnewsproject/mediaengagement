@@ -10,16 +10,16 @@
 		<div class="article__wrapper container container--lg">
 			<article class="article container container--lg post-type--{{post.post_type}}" id="post--{{post.ID}}">
 				<header class="article__header{{ show_header }}">
-					<h1 class="article__title">{{post.title}}</h1>
+					<h1 class="article__title">{{ post.title|raw }}</h1>
 				</header>
 				{% if post.meta('show_newsletter') %}
 					{# ACF / Page settings #}
 					<aside class="newsletter widget">
-						{{ newsletter }}
+						{{ newsletter|raw }}
 					</aside>
 				{% endif %}
 				<div class="article__content">
-					{{post.content}}
+					{{ post.content|raw }}
 				</div>
 				{% if post.title == "About Us" %}
 					{# <div class="home-funders home-section">

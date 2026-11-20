@@ -5,6 +5,7 @@
 {% set tile_target_external = false %}
 {% set tile_classes = 'tile tile--' ~ post_type %}
 {% set tile_date = tile.date is defined and tile.date ? tile.date : false %}
+{% set tile_title = tile.title|decode_entities %}
 
 {# 
 Press tiles have a link to the article URL
@@ -97,13 +98,13 @@ Other tiles have a link to the post URL
 			{% if tile_date %}
 				<time class="tile__date tile__date--press" datetime="{{ tile_date|date('Y-m-d') }}">{{ tile_date }}</time>
 			{% endif %}
-			<h2 class="tile__title h3">{{ tile.title }}</h2>
+			<h2 class="tile__title h3">{{ tile_title }}</h2>
 			<div class="tile__publisher">
 				{{ tile.meta('press_article_publisher') }}
 			</div>
 
 		{% elseif post_type == 'publication' %}
-			<h2 class="tile__title h3">{{ tile.title }}</h2>
+			<h2 class="tile__title h3">{{ tile_title }}</h2>
 			<p class="tile__authors">
 				{{ tile.meta('publication_authors') }}
 			</p>
@@ -126,7 +127,7 @@ Other tiles have a link to the post URL
 				{# {{ tile.vertical.name ? tile.vertical.name : tile.terms('verticals') | join(', ') }} #}<div class="tile__bar"></div>
 			</div>
 			<h2 class="tile__title h3">
-				{{ tile.title|length > 50 ? tile.title|slice(0, 50) ~ "..." : tile.title}}
+				{{ tile_title|length > 50 ? tile_title|slice(0, 50) ~ "..." : tile_title }}
 			</h2>
 			<time class="tile__date" datetime="{{ tile.date|date('Y-m-d') }}">{{ tile.date }}</time>
 		{% endif %}
@@ -140,7 +141,7 @@ Other tiles have a link to the post URL
 		{% if post_type != 'press' and post_type != 'publication' %}
 			{% if tile.excerpt %}
 				<div class="tile__excerpt">
-					{{ tile.excerpt|e('wp_kses_post') }}
+					{{ tile.excerpt|e('wp_kses_post')|raw }}
 				</div>
 			{% endif %}
 		{% endif %}
@@ -158,13 +159,13 @@ Other tiles have a link to the post URL
 					<p class="tile__terms">{{ terms|join(', ') }}</p>
 				{% endif %}
 				{# Edit link #}
-				<a href="{{ tile.edit_link }}" class="tile__edit-link" target="_blank" rel="noopener" aria-label="Edit {{ tile.title }} (opens in new tab)">Edit</a>
+				<a href="{{ tile.edit_link }}" class="tile__edit-link" target="_blank" rel="noopener" aria-label="Edit {{ tile_title }} (opens in new tab)">Edit</a>
 			</div>
 		{% endif %}
 	</div>
 
 	{# Tile link - now the only interactive element #}
-	<a class="tile__link" href="{{ tile_link }}" {% if tile_target_external %} target="_blank" rel="noopener" aria-label="{{ tile.title }} (opens in new tab)" {% endif %}>
-		<span class="sr-text">{{ tile.title }}</span>
+	<a class="tile__link" href="{{ tile_link }}" {% if tile_target_external %} target="_blank" rel="noopener" aria-label="{{ tile_title }} (opens in new tab)" {% endif %}>
+		<span class="sr-text">{{ tile_title }}</span>
 	</a>
 </div>

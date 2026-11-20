@@ -9,14 +9,14 @@
 	<article class="container container--lg full-width post-type--{{post.post_type}}" id="post--{{post.ID}} page-tools">
 
 		<header class="article__header{{ show_header }}">
-			<h1 class="article__title h1">{{post.title}}</h1>
+			<h1 class="article__title h1">{{ post.title|raw }}</h1>
 		</header>
 		<div class="post__wrapper wrapper--pad">
 			<div class="article__wrapper container container--lg">
 				
 			<article class="article container container--lg post-type--{{post.post_type}}" id="post--{{post.ID}}">
 				<header class="article__header sr-text">
-					<h2 class="article__title">{{post.title}}</h2>
+					<h2 class="article__title">{{ post.title|raw }}</h2>
 				</header>
 
 				<div class="article__content">
@@ -27,13 +27,13 @@
 							{% else %}
 								<br>
 							{% endif %}
-							<h2>{{ item.title }}</h2>
+							<h2>{{ item.title|raw }}</h2>
 							<img src="{{ get_image(item.image).src('thumbnail') }}"
 							     srcset="{{ get_image(item.image).srcset }}"
 							     sizes="{{ get_image(item.image).img_sizes }}"
 							     alt="{{ item.title }}"
 							     loading="eager" />							<h3>{{ item.subtitle }}</h3>
-							<p>{{ item.content }}</p>
+							<p>{{ item.content|raw }}</p>
 							<p>
 								{% if item.plugin_button_1 != "" %}
 									<a class="btn btn--ghost btn--see-all" href="{{ item.plugin_button_1_url }}" aria-label="{{ item.plugin_button_1 }} about {{ item.title }}">{{ item.plugin_button_1 }}</a>
@@ -45,7 +45,7 @@
 							<br>
 						</section>
 					{% endfor %}
-					{{post.content}}
+					{{ post.content|raw }}
 				</div>
 
 				<aside class="newsletter-about widget">
@@ -59,7 +59,7 @@
 							{% endfor %}
 						</ul>
 					</section>
-					{{ newsletter }}
+					{{ newsletter|raw }}
 				</aside>
 
 			</article>

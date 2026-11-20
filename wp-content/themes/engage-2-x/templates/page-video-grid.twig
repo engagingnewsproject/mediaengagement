@@ -7,12 +7,12 @@
 			<article class="article__full-width post-type--{{post.post_type}}" id="post--{{post.ID}}">
 
 				<header class="article__header">
-					{{post.content}}
+					{{post.content|raw}}
 				</header>
 				<div class="article__content wrapper--pad">
 					<section>
 						{# title #}
-						<h1 class="article__title">{{post.title}}</h1>
+						<h1 class="article__title">{{post.title|raw}}</h1>
 						{# intro & logo's #}
 						<div class="article__intro grid grid--col-12 grid--gap-20 container container--lg">
 							<div class="grid tile-col__whole">
@@ -28,12 +28,12 @@
 										 sizes="{{ get_image(post.meta('stop_logo')).img_sizes }}"
 										 alt="{{ get_image(post.meta('stop_logo')).alt }}" />
 								</div>
-								{{ post.meta('intro')}}
+								{{ post.meta('intro')|raw}}
 							</div>
 						</div>
 
 						<div class="article__intro container container--lg text-center">
-							<h2 class="article__title h2">{{ post.meta('pdf_title')}}</h2>
+							<h2 class="article__title h2">{{ post.meta('pdf_title')|raw}}</h2>
 							{# PDF file src: ACF Video Grid Field Group #}
 							<a href="{{ post.meta('pdf_file') }}" target="_blank" class="pdf">
 								<img src="{{ get_image(post.meta('pdf_image')).src('medium') }}"
@@ -100,7 +100,7 @@
 						</div>
 					</section>
 					<div class="article__quotes grid grid--col-12 article__quotes-disclaimer text-center">
-						{{ post.meta('disclaimer') }}
+						{{ post.meta('disclaimer')|raw }}
 					</div>
 				</div>
 			</article>

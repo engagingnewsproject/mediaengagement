@@ -9,7 +9,7 @@
 	<article class="container container--lg full-width post-type--{{post.post_type}}" id="post--{{post.ID}} page-tools">
 
 		<header class="article__header{{ show_header }}">
-			<h1 class="article__title h1">{{post.title}}</h1>
+			<h1 class="article__title h1">{{ post.title|raw }}</h1>
 		</header>
 		<div class="container">
 			<div class="article__wrapper container container--lg">
@@ -20,7 +20,7 @@
      sizes="{{ post.thumbnail.img_sizes }}"
      alt="{{ post.thumbnail.alt }}"
      loading="eager" />					
-	 {{post.content}}
+	 	{{ post.content|raw }}
 					<section class="tiles grid grid--col-12 grid--gap-20 section-margin">
 						{% for item in post.meta('tips_grid') %}
 							<div class="tile tile--has-img tile--research-cat-- tile--vertical--propaganda">
