@@ -2,9 +2,9 @@
 
 {% block content %}
 	<div class="container content-wrapper">
-		{{content}}
+		{{ content|raw }}
 	</div><!-- /content-wrapper -->
 	{% if options.footer_settings.quiz_footer %}
-		{{options.footer_settings.quiz_footer}}
+		{{ options.footer_settings.quiz_footer|raw }}
 	{% endif %}
 {% endblock %}

@@ -155,7 +155,7 @@
 	{# Display a newsletter widget for post types other than team or board. #}
 	{% if post.post_type != "team" and post.post_type != "board" %}
 		<aside class="newsletter widget">
-			{{ newsletter }}
+			{{ newsletter|raw }}
 		</aside>
 	{% endif %}
 

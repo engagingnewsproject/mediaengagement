@@ -15,7 +15,7 @@
 		{% include "partial/tile-intro.twig" with { 'tile': post } %}
 
 		<div class="article__content">
-			{{post.content}}
+			{{ post.content|raw }}
 				{% if publication_posts %}
 					{% set posts = publication_posts %}
 					{# Loop through each article #}
