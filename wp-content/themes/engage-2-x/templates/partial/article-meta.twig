@@ -14,9 +14,20 @@
 	{% if post.post_type != 'tribe_events' and post.post_type != 'research' and post.post_type != 'blogs' and post.post_type != 'team' and post.post_type != 'board' and post.post_type != 'page' %}
 		<p
 			class="article-meta__item article__author">
-			{# TODO: potentially remove/fix this line for the author display #}
+			{% set author_name = post.author.name ? post.author.name : post.author.user_nicename|capitalize %}
+			{# Use a real published profile; missing or ambiguous matches remain plain text. #}
+			{% set author_profiles = author_name ? function('get_posts', {
+				post_type: 'team',
+				post_status: 'publish',
+				title: author_name,
+				posts_per_page: 2
+			}) : [] %}
 			<span class="author__by">By</span>
-			<a class="author__link" href="/team/{{post.author|lower|split(' ')|join('-')}}">{{ post.author.name ? post.author.name : post.author.user_nicename|capitalize }}</a>
+			{% if author_profiles|length == 1 %}
+				<a class="author__link" href="{{ function('get_permalink', (author_profiles|first).ID) }}">{{ author_name }}</a>
+			{% else %}
+				{{ author_name }}
+			{% endif %}
 		</p>
 		<p class="article-meta__item article__date">{{ post.date }}</p>
 	{% endif %}
@@ -58,7 +69,7 @@
 			{# Display a link to the category associated with the research post. #}
 			{% set category = post.terms('research-categories')|first %}
 			{% if category.slug != 'uncategorized' %}
-				<p class="testArticleMetaTwig article-meta__item article__category article__category--{{ category.slug }}">
+				<p class="article-meta__item article__category article__category--{{ category.slug }}">
 					<a class="category-name category-color--{{ category.slug }}" href="/research/category/{{ category.slug }}/">←
 						{{ category.name }}</a>
 				</p>
