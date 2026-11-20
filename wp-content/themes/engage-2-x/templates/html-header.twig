@@ -1,8 +1,8 @@
 <!doctype html>
-<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes }}> <![endif]-->
-<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{ site.language_attributes }}> <![endif]-->
-<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{ site.language_attributes }}> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" {{ site.language_attributes }}> <!--<![endif]-->
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes|raw }}> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{ site.language_attributes|raw }}> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{ site.language_attributes|raw }}> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" {{ site.language_attributes|raw }}> <!--<![endif]-->
 <head>
 	<!-- Google Tag Manager -->
 	<script>
@@ -34,9 +34,9 @@
 	<meta charset="{{ site.charset }}" />
 		<title>
 			{% if wp_title %}
-				{{ wp_title }} - {{ site.name }}
+				{{ wp_title|decode_entities }} - {{ site.name|decode_entities }}
 			{% else %}
-				{{ site.name }}
+				{{ site.name|decode_entities }}
 			{% endif %}
 		</title>
 	<meta name="description" content="{{ site.description }}">
@@ -47,13 +47,13 @@
 	<link rel="pingback" href="{{ site.pingback_url }}" />
 
 
-	{{function('wp_head')}}
+	{{ function('wp_head')|raw }}
 
 	{% if post.post_type == 'research' %}
 		<meta property="og:site_name" content="Center for Media Engagement" />
 		<meta property="og:url"         content="{{ post.link }}" />
 		<meta property="og:type"        content="article" />
-		<meta property="og:title"       content="{{ post.title }}" />
+		<meta property="og:title"       content="{{ post.title|decode_entities }}" />
 		<meta property="og:description" content="{{ post.excerpt.length(30).read_more('') }}" />
 
 		{% if tile.thumbnail %}
